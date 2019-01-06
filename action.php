@@ -109,7 +109,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
                      data-ad-client="ca-pub-9530166455702489"
                      data-ad-slot="9386255497"
                      data-ad-format="link"
-                     data-full-width-responsive="true">');
+                     data-full-width-responsive="true"');
             
             if ($this->getConf('TestMode') == 1 ){
                 print 'data-ad-test="on"';
