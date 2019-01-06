@@ -1,0 +1,15 @@
+
+.ads-top {  
+    margin: 0 0 0.5em;
+    padding: 0.5em;
+    clear: both;  
+    text-align: justify;
+    vertical-align: middle;  
+    border-collapse: collapse;  
+    background-color: #ffc;
+    position: relative;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: #eeb;
+    align:center;
+} 

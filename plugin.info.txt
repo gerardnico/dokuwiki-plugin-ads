@@ -1,0 +1,7 @@
+base   ads
+author Nicolas GERARD
+email  gerardnico@gmail.com
+date   2019-1-7
+name   Ads Plugin
+desc   Manage the display of Google Ads
+url    https://github.com/gerardnico/dokuwiki-plugin-ads
