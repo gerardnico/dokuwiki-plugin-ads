@@ -77,7 +77,8 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
             //
             // Time
             // if ( time( ) < strtotime( "2020-2-7" ) ) {
-            ptln('<div class="ads-top"');
+            ptln('<div align="center">');
+            ptln('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>');
             ptln('<!-- Top -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -99,6 +100,8 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
         
         function _adSidebar(&$event, $param) {
 
+            ptln('<div align="center">');
+            ptln('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>');
             ptln('
                 <!-- Only link -->
                 <ins class="adsbygoogle"
@@ -114,7 +117,8 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
             
             ptln('>
                 </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>');
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+		</div>');
 			
 	}
         
