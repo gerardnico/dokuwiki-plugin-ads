@@ -94,6 +94,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
             ptln('>
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <div style="font-size: 10px;color: #2b73b7">Advertising</div>
             </div>');
 			
 	}
@@ -118,6 +119,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
             ptln('>
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <div style="font-size: 10px;color: #2b73b7">Advertising</div>
 		</div>');
 			
 	}
