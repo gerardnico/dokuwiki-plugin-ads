@@ -86,7 +86,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
                 ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
             } else {
                 
-                ptln($this->getConf('AdsSideBarBottom'));
+                ptln($this->getConf('AdsSidebarBottom'));
                 
             }
 			
