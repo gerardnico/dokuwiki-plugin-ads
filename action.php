@@ -21,7 +21,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
 
 	function register(Doku_Event_Handler $controller){
 		$controller->register_hook(
-				'TPL_TOP_OUTPUT',
+				'TPL_PAGE_TOP_OUTPUT',
 				'BEFORE',
 				$this,
 				'_adTop',
@@ -29,22 +29,25 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
 		);
                 
                 $controller->register_hook(
-				'TPL_SIDEBAR_OUTPUT',
+				'TPL_SIDEBAR_BOTTOM_OUTPUT',
 				'BEFORE',
 				$this,
 				'_adSideBar',
 				array()
 		);
                 
-                $controller->register_hook(
-				'TPL_METAHEADER_OUTPUT',
-				'BEFORE',
-				$this,
-				'_adJs',
-				array()
-		);
 	}
 
+        // 
+        // Function for conditional Ads based on Country
+        // 
+        // Example: Geo
+        // $IPaddress=$_SERVER['REMOTE_ADDR'];
+        // $IPaddress='193.173.53.8';
+        // $two_letter_country_code=$this->iptocountry($IPaddress);
+        // if ($two_letter_country_code=="NL")
+        //
+        // Bonus: Time : if ( time( ) < strtotime( "2020-2-7" ) ) {
 	function iptocountry($ip) {
 		$numbers = preg_split( "/\./", $ip);
 		include("ip_files/".$numbers[0].".php");
@@ -67,76 +70,28 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
 	 */
 	function _adTop(&$event, $param) {
 
-            // Example conditional:
-            // 
-            // Geo
-            // $IPaddress=$_SERVER['REMOTE_ADDR'];
-            // $IPaddress='193.173.53.8';
-            // $two_letter_country_code=$this->iptocountry($IPaddress);
-            // if ($two_letter_country_code=="NL")
-            //
-            // Time
-            // if ( time( ) < strtotime( "2020-2-7" ) ) {
-            ptln('<div align="center">');
-            ptln('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>');
-            ptln('<!-- Top -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9530166455702489"
-                     data-ad-slot="9424922515"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"');
-            
             if ($this->getConf('TestMode') == 1 ){
-                print 'data-ad-test="on"';
+                ptln( '<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
+            } else {
+                
+                ptln($this->getConf('AdsPageTop'));
+                
             }
-            
-            ptln('>
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <div style="font-size: 10px;color: #2b73b7">Advertising</div>
-            </div>');
 			
 	}
         
         function _adSidebar(&$event, $param) {
 
-            ptln('<div align="center">');
-            ptln('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>');
-            ptln('
-                <!-- Only link -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9530166455702489"
-                     data-ad-slot="9386255497"
-                     data-ad-format="link"
-                     data-full-width-responsive="true"');
-            
             if ($this->getConf('TestMode') == 1 ){
-                print 'data-ad-test="on"';
+                ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
+            } else {
+                
+                ptln($this->getConf('AdsSideBarBottom'));
+                
             }
-            
-            ptln('>
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <div style="font-size: 10px;color: #2b73b7">Advertising</div>
-		</div>');
 			
 	}
         
-        /**
-	 * Add the Javascript
-	 */
-	function _adJs(&$event, $param) {
-
-            // Adding the Google AdSense JavaScript File
-            $event->data["script"][] = array (
-              "async" => "true",
-              "type" => "text/javascript",
-              "src" => "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-              "_data" => "",
-            );
-			
-	}
+        
 
 }
