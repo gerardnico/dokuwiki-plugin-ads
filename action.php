@@ -70,12 +70,14 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
 	 */
 	function _adTop(&$event, $param) {
 
-            if ($this->getConf('TestMode') == 1 ){
-                ptln( '<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
-            } else {
-                
-                ptln($this->getConf('AdsPageTop'));
-                
+            global $ACT;
+            $mode = array('admin','edit');
+            if (!in_array($ACT,$mode)) {
+                if ($this->getConf('TestMode') == 1 ){
+                    ptln( '<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
+                } else {
+                    ptln($this->getConf('AdsPageTop'));
+                }
             }
 			
 	}
