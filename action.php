@@ -70,13 +70,17 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
 	 */
 	function _adTop(&$event, $param) {
 
+           
             global $ACT;
             $mode = array('admin','edit');
             if (!in_array($ACT,$mode)) {
-                if ($this->getConf('TestMode') == 1 ){
-                    ptln( '<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
-                } else {
-                    ptln($this->getConf('AdsPageTop'));
+                
+                if (!$this->isMainPageHidden($id)){
+                    if ($this->getConf('TestMode') == 1 ){
+                        ptln( '<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
+                    } else {
+                        ptln($this->getConf('AdsPageTop'));
+                    }
                 }
             }
 			
@@ -84,16 +88,30 @@ class action_plugin_ads extends DokuWiki_Action_Plugin {
         
         function _adSidebar(&$event, $param) {
 
-            if ($this->getConf('TestMode') == 1 ){
-                ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
-            } else {
-                
-                ptln($this->getConf('AdsSidebarBottom'));
-                
+            if (!$this->isMainPageHidden($id)){
+                if ($this->getConf('TestMode') == 1 ){
+                    ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `'.$this->getInfo()['name'].'`</div>');
+                } else {
+
+                    ptln($this->getConf('AdsSidebarBottom'));
+
+                }
             }
 			
 	}
         
         
+        function isMainPageHidden(){
+            
+            global $INFO;
+            global $ID;
+            // The id of the page (not of the sidebar)
+            $id = $ID;
+            if ($INFO != null) {    
+                $id = $INFO['id'];
+            }
+            
+            return isHiddenPage($id);
+        }
 
 }
