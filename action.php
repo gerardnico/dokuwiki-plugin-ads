@@ -24,6 +24,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
 
     function register(Doku_Event_Handler $controller)
     {
+
         $controller->register_hook(
             'TPL_PAGE_TOP_OUTPUT',
             'BEFORE',
@@ -82,7 +83,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
         $mode = array('admin', 'edit');
         if (!in_array($ACT, $mode)) {
 
-            if (!$this->isMainPageHidden()) {
+            if (!( $this->isMainPageHidden() or $this->isNoAddPage())) {
                 if ($this->getConf('TestMode') == 1) {
                     ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `' . $this->getInfo()['name'] . '`</div>');
                 } else {
@@ -96,7 +97,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
     function _adSidebar(&$event, $param)
     {
 
-        if (!$this->isMainPageHidden()) {
+        if (!( $this->isMainPageHidden() or $this->isNoAddPage())) {
             if ($this->getConf('TestMode') == 1) {
                 ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `' . $this->getInfo()['name'] . '`</div>');
             } else {
@@ -121,6 +122,32 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
         }
 
         return isHiddenPage($id);
+    }
+
+    function isNoAddPage()
+    {
+
+        global $INFO;
+        global $ID;
+        // The id of the page (not of the sidebar)
+        $id = $ID;
+        if ($INFO != null) {
+            $id = $INFO['id'];
+        }
+        // This is also done in the _isHiddenPage function
+        $id = ':'.$id;
+
+        $noAdPages = $this->getConf('NoAdPages');
+        if (empty($noAdPages)) return false;
+
+
+        if (preg_match('/' . $noAdPages . '/ui', $id)) {
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
 
 }
