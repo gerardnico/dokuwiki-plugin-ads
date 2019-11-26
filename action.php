@@ -78,17 +78,11 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
     function _adTop(&$event, $param)
     {
 
-
-        global $ACT;
-        $mode = array('admin', 'edit');
-        if (!in_array($ACT, $mode)) {
-
-            if (!( $this->isMainPageHidden() or $this->isNoAddPage())) {
-                if ($this->getConf('TestMode') == 1) {
-                    ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `' . $this->getInfo()['name'] . '`</div>');
-                } else {
-                    ptln($this->getConf('AdsPageTop'));
-                }
+        if ($this->showTopAd()){
+            if ($this->getConf('TestMode') == 1) {
+                ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `' . $this->getInfo()['name'] . '`</div>');
+            } else {
+                ptln($this->getConf('AdsPageTop'));
             }
         }
 
@@ -112,30 +106,13 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
 
     function isMainPageHidden()
     {
-
-        global $INFO;
-        global $ID;
-        // The id of the page (not of the sidebar)
-        $id = $ID;
-        if ($INFO != null) {
-            $id = $INFO['id'];
-        }
-
-        return isHiddenPage($id);
+        return isHiddenPage($this->getPageId());
     }
 
     function isNoAddPage()
     {
 
-        global $INFO;
-        global $ID;
-        // The id of the page (not of the sidebar)
-        $id = $ID;
-        if ($INFO != null) {
-            $id = $INFO['id'];
-        }
-        // This is also done in the _isHiddenPage function
-        $id = ':'.$id;
+        $id = $this->getPageId();
 
         $noAdPages = $this->getConf('NoAdPages');
         if (empty($noAdPages)) return false;
@@ -148,6 +125,35 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
         }
 
 
+    }
+
+    private function getPageId()
+    {
+        global $INFO;
+        global $ID;
+        // The id of the page (not of the sidebar)
+        $id = $ID;
+        if ($INFO != null) {
+            $id = $INFO['id'];
+        }
+        // This is also done in the _isHiddenPage function
+        return ':'.$id;
+    }
+
+    private function showTopAd()
+    {
+        global $ACT;
+        $mode = array('admin', 'edit');
+        if (!in_array($ACT, $mode)) {
+            if ($this->getPageId()==':start'){
+                return $this->getConf('HomeAdInTopSlot');
+            } else {
+                if (!($this->isMainPageHidden() or $this->isNoAddPage())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

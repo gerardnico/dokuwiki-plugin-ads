@@ -4,4 +4,5 @@ $conf['TestMode']  = 0;
 $conf['AdsPageTop'] = '';
 $conf['AdsSidebarBottom'] = '';
 $conf['NoAdPages'] = '';
+$conf['HomeAdInTopSlot'] = false;
 ?>

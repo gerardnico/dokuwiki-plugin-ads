@@ -4,4 +4,5 @@ $meta['TestMode'] = array('onoff');
 $meta['NoAdPages'] = array('string');
 $meta['AdsPageTop'] = array('');
 $meta['AdsSidebarBottom'] = array('');
+$meta['HomeAdInTopSlot'] = array('onoff');
 ?>
