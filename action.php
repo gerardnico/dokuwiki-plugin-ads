@@ -34,6 +34,14 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
         );
 
         $controller->register_hook(
+            'TPL_DOCUMENT_CLOSING',
+            'BEFORE',
+            $this,
+            '_consent',
+            array()
+        );
+
+        $controller->register_hook(
             'TPL_SIDEBAR_BOTTOM_OUTPUT',
             'BEFORE',
             $this,
@@ -78,7 +86,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
     function _adTop(&$event, $param)
     {
 
-        if ($this->showTopAd()){
+        if ($this->showTopAd()) {
             if ($this->getConf('TestMode') == 1) {
                 ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `' . $this->getInfo()['name'] . '`</div>');
             } else {
@@ -91,7 +99,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
     function _adSidebar(&$event, $param)
     {
 
-        if (!( $this->isMainPageHidden() or $this->isNoAddPage())) {
+        if (!($this->isMainPageHidden() or $this->isNoAddPage())) {
             if ($this->getConf('TestMode') == 1) {
                 ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `' . $this->getInfo()['name'] . '`</div>');
             } else {
@@ -101,6 +109,16 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
             }
         }
 
+    }
+
+    /**
+     * Add the modal consent windows
+     * The javascript can be seen in the script.js file
+     */
+    function _consent(&$event, $param)
+    {
+        $consent_html = file_get_contents(dirname(__FILE__).'/consent_modal.html');
+        ptln($consent_html);
     }
 
 
@@ -137,7 +155,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
             $id = $INFO['id'];
         }
         // This is also done in the _isHiddenPage function
-        return ':'.$id;
+        return ':' . $id;
     }
 
     private function showTopAd()
@@ -145,7 +163,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
         global $ACT;
         $mode = array('admin', 'edit');
         if (!in_array($ACT, $mode)) {
-            if ($this->getPageId()==':start'){
+            if ($this->getPageId() == ':start') {
                 return $this->getConf('HomeAdInTopSlot');
             } else {
                 if (!($this->isMainPageHidden() or $this->isNoAddPage())) {
