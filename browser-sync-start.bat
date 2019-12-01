@@ -1,1 +1,1 @@
-browser-sync start -p http://localhost:81/  --files "*.js, *.css, *.php"
+browser-sync start -p http://localhost:81/  --files "*.js, *.css, *.php, *.html"
