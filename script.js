@@ -8,7 +8,7 @@ var ads = {
                 height: 60,
                 draggable: false,
                 resizable: false,
-                position: { my: "center bottom", at: "center bottom", of: window  },
+                // position: { my: "center bottom", at: "bottom", of: window  },
                 dialogClass: 'ads_style bg-light'
             }
         );
