@@ -1,19 +1,17 @@
 <style>
-.ads_style .ui-dialog-titlebar {
-    display:none;
-
-}
-.ads_style {
+.consent_box {
     left: 0 !important;
     bottom: 0px !important;
     right: 0 !important;
     top: inherit !important;
     position: fixed;
+    font-size: inherit;
+    z-index: 4000 !important;
 }
-
 </style>
-<div id="dialog" class="text-center m-auto">I'm a dialog
-    <button type="button" class="close" style="float:initial" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+<div id="dialog" class="container consent_box text-center m-auto p-3 show bg-light rounded border border-secondary">
+    <p>By using our site, you acknowledge that you have read and understand our <a href="/legal/cookie">Cookie Policy</a>, <a href="/legal/privacy">Privacy Policy</a>, and our <a href="/legal/terms">Terms of Service</a>.</p>
+    <button type="button" class="btn btn-secondary">
+        I agree
     </button>
 </div>

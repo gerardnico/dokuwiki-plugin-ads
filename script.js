@@ -5,7 +5,7 @@ var ads = {
             {
                 autoOpen: true,
                 width: '100%',
-                height: 60,
+                height: 'auto',
                 draggable: false,
                 resizable: false,
                 // position: { my: "center bottom", at: "bottom", of: window  },
@@ -16,4 +16,4 @@ var ads = {
 };
 
 
-ads.consent();
+//ads.consent();
