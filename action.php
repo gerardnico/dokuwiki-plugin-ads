@@ -34,14 +34,6 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
         );
 
         $controller->register_hook(
-            'TPL_DOCUMENT_CLOSING',
-            'BEFORE',
-            $this,
-            '_consent',
-            array()
-        );
-
-        $controller->register_hook(
             'TPL_SIDEBAR_BOTTOM_OUTPUT',
             'BEFORE',
             $this,
@@ -109,16 +101,6 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
             }
         }
 
-    }
-
-    /**
-     * Add the modal consent windows
-     * The javascript can be seen in the script.js file
-     */
-    function _consent(&$event, $param)
-    {
-        $consent_html = file_get_contents(dirname(__FILE__).'/consent_modal.html');
-        ptln($consent_html);
     }
 
 
