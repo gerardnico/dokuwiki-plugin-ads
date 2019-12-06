@@ -11,10 +11,12 @@ var gdpr = {
         }
         // getItem return a string, therefore !'false' is false and not true
         let consent = ( localStorage.getItem(consentKey) === 'true' );
+
         if (!consent) {
-            // Load the consent file
-            consentBox = `
-                <div id="gdpr_consent" class="container alert alert-secondary alert-dismissible fixed-bottom text-center fade" role="alert" >
+            let consentBoxId = 'gdpr_consent';
+            let consentBoxSelector = '#' + consentBoxId;
+            let consentBox = `
+                <div id="${consentBoxId}" class="container alert alert-secondary alert-dismissible fixed-bottom text-center fade" role="alert" >
                     By using our site, you acknowledge that you have read and understand our <a href="/legal/cookie">Cookie Policy</a>, <a href="/legal/privacy">Privacy Policy</a>, and our <a href="/legal/terms">Terms of Service</a>.
                     <button type="button" class="close" style="float:initial"  data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -22,11 +24,10 @@ var gdpr = {
                 </div>
             `
             jQuery("body").append(consentBox);
-            let selector = '#gdpr_consent';
             // Show the alert
-            jQuery(selector).addClass('show');
+            jQuery(consentBoxSelector).addClass('show');
             // When it's closed, we save the consent
-            jQuery(selector).on('closed.bs.alert', function () {
+            jQuery(consentBoxSelector).on('closed.bs.alert', function () {
                 //  This event is fired when the alert has been closed (will wait for CSS transitions to complete)
                 localStorage.setItem(consentKey, true);
             })
@@ -34,7 +35,10 @@ var gdpr = {
     }
 };
 
-
-gdpr.consent();
+// Must be started after page load
+jQuery(function () {
+        gdpr.consent();
+    }
+);
 
 
