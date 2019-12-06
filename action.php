@@ -41,6 +41,14 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
             array()
         );
 
+        $controller->register_hook(
+            'TPL_PAGE_TOP_OUTPUT',
+            'BEFORE',
+            $this,
+            '_adTop',
+            array()
+        );
+
     }
 
     //
