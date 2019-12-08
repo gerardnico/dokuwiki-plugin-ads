@@ -12,5 +12,6 @@ $lang['AdsPageTop'] = 'The Ads script to show on the top of your page';
 $lang['AdsSidebarBottom'] = 'The Ads script to show at the bottom of the sidebar';
 $lang['NoAdPages'] = 'A regular expression to not show ads on certain pages (same system than dokuwiki hidepages)';
 $lang['HomeAdInTopSlot'] = 'Show an top ad in the home page';
+$lang['ConsentMessage'] = 'The message shown in the consent box';
 
 ?>

@@ -41,15 +41,6 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
             array()
         );
 
-        $controller->register_hook(
-            'TPL_PAGE_TOP_OUTPUT',
-            'BEFORE',
-            $this,
-            '_adTop',
-            array()
-        );
-
-
         $controller->register_hook('DOKUWIKI_STARTED',
             'AFTER',
             $this, '_addConsentPolicyPages');
@@ -65,10 +56,8 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
     function _addConsentPolicyPages(&$event, $param) {
         global $JSINFO;
         $data = array();
-        $data['cookie']=$this->getConf('ConsentCookiePage');
-        $data['term']=$this->getConf('ConsentTermPage');
-        $data['privacy']=$this->getConf('ConsentPrivacyPage');
-        $JSINFO['consent_policy_pages'] = $data;
+        $data['message']=$this->getConf('ConsentMessage');
+        $JSINFO['consent_conf'] = $data;
     }
 
     //
@@ -121,7 +110,7 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
 
         if (!($this->isMainPageHidden() or $this->isNoAddPage())) {
             if ($this->getConf('TestMode') == 1) {
-                ptln('<div align="center" style="border:1px solid;padding:30px;height:90px">Placeholder added by the `' . $this->getInfo()['name'] . '`</div>');
+                ptln('<div class="text-center mt-3 p-3 border" style="height:160px">Placeholder added by the `' . $this->getInfo()['name'] . '`</div>');
             } else {
 
                 ptln($this->getConf('AdsSidebarBottom'));

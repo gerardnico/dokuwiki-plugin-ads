@@ -5,7 +5,6 @@ $conf['AdsPageTop'] = '';
 $conf['AdsSidebarBottom'] = '';
 $conf['NoAdPages'] = '';
 $conf['HomeAdInTopSlot'] = false;
-$conf['ConsentCookiePage'] = 'legal/cookie';
-$conf['ConsentTermPage'] = 'legal/term';
-$conf['ConsentPrivacyPage'] = 'legal/privacy';
+$conf['ConsentMessage'] = 'By using our site, you acknowledge that you have read, understand and agreed to our <a href="legal/privacy">Privacy Policy</a> and <a href="legal/terms">Terms of service</a>.';
+
 ?>
