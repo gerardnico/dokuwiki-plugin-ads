@@ -37,11 +37,14 @@ function consentBox(config) {
     jQuery(consentBoxSelector).addClass('show');
     // When it's closed, we save the consent
     jQuery(consentBoxSelector).on('closed.bs.alert', function () {
+
         //  This event is fired when the alert has been closed (will wait for CSS transitions to complete)
         localStorage.setItem(consentKey, true);
+
         // Ezoic on the pages ?
-        //check to make sure the ezoic consent receiver is on the page
-        if (typeof ezConsentCategories !== 'object' && typeof __ezconsent == 'object') {
+        // Check to make sure the ezoic consent receiver is on the page
+        // https://svc.ezoic.com/svc/pub/app/54/thirdparty.php
+        if (typeof ezConsentCategories == 'object' && typeof __ezconsent == 'object') {
 
             //set each of the users consent choices
             window.ezConsentCategories.preferences = true;
@@ -50,6 +53,7 @@ function consentBox(config) {
 
             //call to update ezoic of the users choices
             __ezconsent.setEzoicConsentSettings(window.ezConsentCategories);
+
         }
 
     })
