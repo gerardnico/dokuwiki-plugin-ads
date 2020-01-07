@@ -34,34 +34,3 @@ Example to not show any ad on the `start` page and in the namespace `signup`
 ^:(start|signup:.*)
 ```
 
-## Dev 
-
-Javascript: 
-
-  * To install the javascript dependency:
-
-```bash
-yarn add
-```
-  
-  * To build the javascript library:
-
-```bash
-npm build
-``` 
-
-  * To develop the javascript library:
-
-```bash
-npm start
-```
-
-Php:
-
-  * To reload the page when a file has changed - [brow](browser-sync-start.bat)
-  
-```bash
-browser-sync-start.bat
-```
-
-
