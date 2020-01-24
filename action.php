@@ -41,10 +41,6 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
             array()
         );
 
-        $controller->register_hook('DOKUWIKI_STARTED',
-            'AFTER',
-            $this, '_addConsentPolicyPages');
-
 
     }
 
