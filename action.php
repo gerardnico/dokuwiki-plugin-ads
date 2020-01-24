@@ -48,17 +48,6 @@ class action_plugin_ads extends DokuWiki_Action_Plugin
 
     }
 
-    /**
-     * @param $event
-     * @param $param
-     * Add the policy pages to pass them to the javascript in the script.js script
-     */
-    function _addConsentPolicyPages(&$event, $param) {
-        global $JSINFO;
-        $data = array();
-        $data['message']=$this->getConf('ConsentMessage');
-        $JSINFO['consent_conf'] = $data;
-    }
 
     //
     // Function for conditional Ads based on Country
